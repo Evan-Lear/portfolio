@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio</title>
+  <meta name="description" content="Portfolio" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%236366f1'/></svg>" />
+  <script>try{const t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="logo" id="logo"></a>
+      <nav class="links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button id="theme" class="icon-btn" aria-label="Toggle theme">◐</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-text">
+        <p class="badge" id="badge" hidden><span class="dot"></span>Open to opportunities</p>
+        <h1><span class="muted">Hi, I'm</span> <span id="name"></span></h1>
+        <p class="role" id="role"></p>
+        <p class="tagline" id="tagline"></p>
+        <div class="cta">
+          <a class="btn primary" href="#projects">View work</a>
+          <a class="btn" id="resume" target="_blank" rel="noopener" hidden>Résumé</a>
+          <a class="btn ghost" href="#contact">Get in touch</a>
+        </div>
+        <ul class="socials" id="socials"></ul>
+      </div>
+      <div class="hero-photo" id="photo-wrap"></div>
+    </section>
+
+    <section id="about" class="wrap section">
+      <h2 class="eyebrow">About</h2>
+      <div class="about-grid">
+        <div id="about-text" class="prose"></div>
+        <div id="stats" class="stats"></div>
+      </div>
+    </section>
+
+    <section id="experience" class="wrap section">
+      <h2 class="eyebrow">Experience</h2>
+      <ol id="timeline" class="timeline"></ol>
+    </section>
+
+    <section id="projects" class="wrap section">
+      <h2 class="eyebrow">Projects</h2>
+      <div id="project-grid" class="grid"></div>
+    </section>
+
+    <section id="skills" class="wrap section">
+      <h2 class="eyebrow">Skills</h2>
+      <div id="skill-groups" class="skills"></div>
+    </section>
+
+    <section id="education" class="wrap section">
+      <h2 class="eyebrow">Education</h2>
+      <div id="edu" class="edu"></div>
+    </section>
+
+    <section id="contact" class="wrap section contact">
+      <h2 class="eyebrow">Contact</h2>
+      <h3 class="big">Let's work together.</h3>
+      <p id="contact-blurb" class="muted"></p>
+      <a id="email-btn" class="btn primary lg"></a>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <span id="footer-name"></span> · <span id="year"></span>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
