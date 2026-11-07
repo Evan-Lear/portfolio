@@ -46,7 +46,7 @@
     $("#project-grid").innerHTML = C.projects.map((p, i) => `
       <article class="card reveal">
         ${p.image ? `<img class="card-img" src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" />`
-                  : `<div class="card-img placeholder" style="--h:${(i * 67) % 360}">${esc(p.title)}</div>`}
+                  : `<div class="card-img placeholder${p.metric ? " metric" : ""}" style="--h:${(220 + i * 40) % 360}">${esc(p.metric || p.title)}</div>`}
         <div class="card-body">
           <h3>${esc(p.title)}</h3>
           <p>${esc(p.description)}</p>
@@ -71,7 +71,13 @@
     $("#edu").innerHTML = C.education.map((e) => `
       <div class="edu-item reveal"><div><strong>${esc(e.school)}</strong><div class="muted">${esc(e.degree)}</div></div>
       <div class="muted mono">${esc(e.period)}</div></div>`).join("");
-  } else hide("education");
+  }
+  if (has(C.certifications)) {
+    $("#certs").innerHTML = C.certifications.map((c) => `
+      <div class="edu-item reveal"><div><strong>${esc(c.name)}</strong><div class="muted">${esc(c.issuer)}</div></div>
+      <div class="muted mono">${esc(c.period)}</div></div>`).join("");
+  }
+  if (!has(C.education) && !has(C.certifications)) hide("education");
 
   // Contact
   $("#contact-blurb").textContent = C.contactBlurb || "";
