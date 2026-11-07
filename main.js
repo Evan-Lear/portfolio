@@ -4,6 +4,7 @@
   const esc = (s = "") => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   const hide = (id) => { const el = document.getElementById(id); if (el) el.style.display = "none"; };
   const has = (a) => Array.isArray(a) && a.length > 0;
+  const asset = (p = "") => (/^(https?:|\/|data:)/.test(p) ? p : "/" + p);
 
   document.title = C.name ? `${C.name} — ${C.role || "Portfolio"}` : "Portfolio";
   document.querySelector('meta[name="description"]').content = C.tagline || "";
@@ -14,13 +15,13 @@
   $("#role").textContent = [C.role, C.location].filter(Boolean).join(" · ");
   $("#tagline").textContent = C.tagline || "";
   if (C.available) $("#badge").hidden = false;
-  if (C.resumeUrl) { const r = $("#resume"); r.href = C.resumeUrl; r.hidden = false; }
+  if (C.resumeUrl) { const r = $("#resume"); r.href = asset(C.resumeUrl); r.hidden = false; }
 
   $("#socials").innerHTML = (C.socials || []).map((s) =>
     `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)} ↗</a></li>`).join("");
 
   $("#photo-wrap").innerHTML = C.photo
-    ? `<img src="${esc(C.photo)}" alt="${esc(C.name)}" />`
+    ? `<img src="${esc(asset(C.photo))}" alt="${esc(C.name)}" />`
     : `<div class="avatar">${esc(initials)}</div>`;
 
   // About
@@ -43,20 +44,20 @@
 
   // Projects
   if (has(C.projects)) {
-    $("#project-grid").innerHTML = C.projects.map((p, i) => `
-      <article class="card reveal">
-        ${p.image ? `<img class="card-img" src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" />`
+    $("#project-grid").innerHTML = C.projects.map((p, i) => {
+      const href = p.slug ? `/work/${encodeURIComponent(p.slug)}` : "";
+      return `
+      <article class="card reveal${href ? " clickable" : ""}">
+        ${p.image ? `<img class="card-img" src="${esc(asset(p.image))}" alt="${esc(p.title)}" loading="lazy" />`
                   : `<div class="card-img placeholder${p.metric ? " metric" : ""}" style="--h:${30 - i * 7}">${esc(p.metric || p.title)}</div>`}
         <div class="card-body">
-          <h3>${esc(p.title)}</h3>
+          <h3>${href ? `<a class="card-link" href="${href}">${esc(p.title)}</a>` : esc(p.title)}</h3>
           <p>${esc(p.description)}</p>
           ${has(p.tags) ? `<ul class="tags">${p.tags.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}
-          <div class="card-links">
-            ${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">Live ↗</a>` : ""}
-            ${p.repo ? `<a href="${esc(p.repo)}" target="_blank" rel="noopener">Code ↗</a>` : ""}
-          </div>
+          ${href ? `<span class="btn primary card-btn" aria-hidden="true">View work →</span>` : ""}
         </div>
-      </article>`).join("");
+      </article>`;
+    }).join("");
   } else hide("projects");
 
   // Skills

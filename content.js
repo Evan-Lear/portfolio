@@ -88,28 +88,62 @@ window.CONTENT = {
     },
   ],
 
-  // "metric" shows big on the card when there's no image
+  // ----------------------------------------------------------
+  //  SELECTED WORK — each category gets its own page at /work/<slug>
+  //  Card:  title, metric (big text when no image), description, tags, image
+  //  Page:  fill in `page` below. Empty sections are hidden; a page with
+  //         no sections shows a "coming soon" note.
+  //    page.intro     — opening paragraph
+  //    page.sections  — [{ heading, body, images: ["assets/x.jpg"], link: { label, url } }]
+  //    page.results   — [{ value, label }] shown as stat cards
+  // ----------------------------------------------------------
   projects: [
     {
-      title: "Social campaigns for a pet resort",
+      slug: "social-media",
+      title: "Social Media & Content",
       metric: "+45%",
-      description: "Social media campaigns for Pet Resort at Greensprings that raised engagement and customer interactions by 45%, plus targeted ads that tripled cat boarding bookings.",
-      tags: ["Social Media", "Paid Ads", "Content"],
-      image: "", link: "", repo: "",
+      description: "Campaigns, ads and content across social, blogs, email and flyers, including a pet resort campaign that raised engagement 45% and tripled cat boarding bookings.",
+      tags: ["Social Media", "Paid Ads", "Content Writing"],
+      image: "",
+      page: {
+        intro: "",
+        results: [
+          { value: "+45%", label: "Engagement & customer interactions" },
+          { value: "3×",   label: "Cat boarding bookings from targeted ads" },
+        ],
+        sections: [
+          // { heading: "Pet Resort at Greensprings", body: "What you did and why it worked.", images: [], link: null },
+        ],
+      },
     },
     {
-      title: "Campus traffic push for MajorMatch",
+      slug: "events-growth",
+      title: "Events & Growth Marketing",
       metric: "4×",
-      description: "A month-long freelance project built around on-campus events that quadrupled average website traffic.",
-      tags: ["Events", "Growth", "Web Traffic"],
-      image: "", link: "", repo: "",
+      description: "On-campus events, flyers and sales pushes that drove real numbers: 4× website traffic for MajorMatch and #2 nationwide in direct sales at Storage Scholars.",
+      tags: ["Events", "Growth", "B2C Sales"],
+      image: "",
+      page: {
+        intro: "",
+        results: [
+          { value: "4×", label: "Website traffic for MajorMatch" },
+          { value: "#2", label: "Nationwide in direct sales (100+ interns)" },
+        ],
+        sections: [],
+      },
     },
     {
-      title: "Building the ETLMaestro brand",
+      slug: "brand-strategy",
+      title: "Brand Strategy",
       metric: "0 → 1",
-      description: "Brand guidelines, customer research and multi-channel messaging for a data orchestration startup, built from scratch as its first marketing hire.",
+      description: "Building a brand from nothing at ETLMaestro: brand guidelines, ideal customer research, logo direction and multi-channel messaging.",
       tags: ["Brand Strategy", "Research", "B2B"],
-      image: "", link: "", repo: "",
+      image: "",
+      page: {
+        intro: "",
+        results: [],
+        sections: [],
+      },
     },
   ],
 
