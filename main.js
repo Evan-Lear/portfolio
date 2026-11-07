@@ -46,7 +46,7 @@
     $("#project-grid").innerHTML = C.projects.map((p, i) => `
       <article class="card reveal">
         ${p.image ? `<img class="card-img" src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy" />`
-                  : `<div class="card-img placeholder${p.metric ? " metric" : ""}" style="--h:${(220 + i * 40) % 360}">${esc(p.metric || p.title)}</div>`}
+                  : `<div class="card-img placeholder${p.metric ? " metric" : ""}" style="--h:${30 - i * 7}">${esc(p.metric || p.title)}</div>`}
         <div class="card-body">
           <h3>${esc(p.title)}</h3>
           <p>${esc(p.description)}</p>
