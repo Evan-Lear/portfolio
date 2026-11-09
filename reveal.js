@@ -38,5 +38,12 @@
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
 
-  els.forEach((el) => io.observe(el));
+  const start = () => els.forEach((el) => io.observe(el));
+  if (document.documentElement.classList.contains("intro-active")) {
+    // Wait for the opening animation's curtain to lift before revealing the hero.
+    let started = false;
+    const go = () => { if (!started) { started = true; start(); } };
+    document.addEventListener("intro:done", go, { once: true });
+    setTimeout(go, 3200);
+  } else start();
 })();
