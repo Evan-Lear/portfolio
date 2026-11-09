@@ -33,7 +33,7 @@
   // Experience
   if (has(C.experience)) {
     $("#timeline").innerHTML = C.experience.map((e) => `
-      <li class="tl-item reveal">
+      <li class="tl-item">
         <div class="tl-period">${esc(e.period)}</div>
         <div class="tl-body">
           <h3>${esc(e.title)} <span class="at">@ ${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener">${esc(e.company)}</a>` : esc(e.company)}</span></h3>
@@ -47,7 +47,7 @@
     $("#project-grid").innerHTML = C.projects.map((p, i) => {
       const href = p.slug ? `/work/${encodeURIComponent(p.slug)}` : "";
       return `
-      <article class="card reveal${href ? " clickable" : ""}">
+      <article class="card${href ? " clickable" : ""}">
         ${p.image ? `<img class="card-img" src="${esc(asset(p.image))}" alt="${esc(p.title)}" loading="lazy" />`
                   : `<div class="card-img placeholder${p.metric ? " metric" : ""}" style="--h:${30 - i * 7}">${esc(p.metric || p.title)}</div>`}
         <div class="card-body">
@@ -63,19 +63,19 @@
   // Skills
   if (has(C.skills)) {
     $("#skill-groups").innerHTML = C.skills.map((g) => `
-      <div class="skill-group reveal"><h4>${esc(g.group)}</h4>
+      <div class="skill-group"><h4>${esc(g.group)}</h4>
         <ul class="tags">${(g.items || []).map((s) => `<li>${esc(s)}</li>`).join("")}</ul></div>`).join("");
   } else hide("skills");
 
   // Education
   if (has(C.education)) {
     $("#edu").innerHTML = C.education.map((e) => `
-      <div class="edu-item reveal"><div><strong>${esc(e.school)}</strong><div class="muted">${esc(e.degree)}</div></div>
+      <div class="edu-item"><div><strong>${esc(e.school)}</strong><div class="muted">${esc(e.degree)}</div></div>
       <div class="muted mono">${esc(e.period)}</div></div>`).join("");
   }
   if (has(C.certifications)) {
     $("#certs").innerHTML = C.certifications.map((c) => `
-      <div class="edu-item reveal"><div><strong>${esc(c.name)}</strong><div class="muted">${esc(c.issuer)}</div></div>
+      <div class="edu-item"><div><strong>${esc(c.name)}</strong><div class="muted">${esc(c.issuer)}</div></div>
       <div class="muted mono">${esc(c.period)}</div></div>`).join("");
   }
   if (!has(C.education) && !has(C.certifications)) hide("education");
@@ -97,9 +97,4 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 
-  // Reveal on scroll
-  const io = "IntersectionObserver" in window ? new IntersectionObserver((ents) => ents.forEach((en) => {
-    if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
-  }), { threshold: 0.1 }) : null;
-  document.querySelectorAll(".reveal").forEach((el) => io ? io.observe(el) : el.classList.add("in"));
 })();
