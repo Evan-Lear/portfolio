@@ -9,8 +9,6 @@
 
   const C = window.CONTENT || {};
   const name = C.name || "";
-  const initials = name.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
-  intro.querySelector(".intro-mark").textContent = initials;
   intro.querySelector(".intro-name").innerHTML = [...name].map((ch, i) =>
     ch === " " ? '<span class="sp"> </span>'
                : `<span class="ch" style="--i:${i}">${ch.replace(/[&<>"']/g, "")}</span>`).join("");
