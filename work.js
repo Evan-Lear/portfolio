@@ -12,8 +12,6 @@
   const idx = projects.findIndex((p) => p.slug === slug);
   const p = projects[idx];
 
-  const initials = (C.name || "?").split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
-  $("#logo").textContent = initials;
   $("#footer-name").textContent = `© ${C.name || ""}`;
   $("#year").textContent = new Date().getFullYear();
 

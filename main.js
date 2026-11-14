@@ -10,7 +10,6 @@
   document.querySelector('meta[name="description"]').content = C.tagline || "";
 
   const initials = (C.name || "?").split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
-  $("#logo").textContent = initials;
   $("#name").textContent = C.name || "";
   $("#role").textContent = [C.role, C.location].filter(Boolean).join(" · ");
   $("#tagline").textContent = C.tagline || "";
